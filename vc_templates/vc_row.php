@@ -42,8 +42,9 @@ if (!empty( $content_placement ) ) $css_classes[] = 'align-content-' . $content_
 $has_video_bg = ( ! empty( $video_bg ) && ! empty( $video_bg_url ) && vc_extract_youtube_id( $video_bg_url ) );
 if ($has_video_bg) $wrapper_attributes[] = 'data-video-bg="' . esc_attr( $video_bg_url ) . '"';
 
-//Set RTL mode
-if (!empty( $atts['rtl_reverse'] ) ) $wrapper_attributes[] = 'dir="rtl"';
+//Set RTL/LTR mode
+if (!empty( $atts['rtl_reverse'] ) && is_rtl() ) $wrapper_attributes[] = 'dir="ltr"';
+if (!empty( $atts['rtl_reverse'] ) && !is_rtl() ) $wrapper_attributes[] = 'dir="rtl"';
 
 //Asign id attr
 if (!empty( $el_id ) ) $wrapper_attributes[] = 'id="' . esc_attr( $el_id ) . '"';
